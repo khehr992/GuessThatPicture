@@ -1,0 +1,187 @@
+<html>
+
+<head>
+  <title>Super Quiz Time Y'all!</title>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+
+    var score = 0;
+    var questionCount = 0;
+    var blueberryAnswer='n/a';
+    var pineappleAnswer='n/a';
+    var limeAnswer='n/a';
+    var peachAnswer='n/a';
+    var watermelonAnswer='n/a';
+
+    function checkPicture() {
+
+      console.log(questionCount);
+
+
+      
+
+
+
+      if (questionCount == 99) {
+        //Reset
+        score = 0;
+        questionCount = 0;
+        document.getElementById("answer").hidden = false;
+        document.getElementById("answer").value = '';
+        document.getElementById("button").value = 'Next';
+        document.getElementById("image").src = 'blueberry.png';
+        document.getElementById("image").hidden = false;
+        document.getElementById("score").hidden=true;
+        document.getElementById("results").hidden=true;
+        blueberryScore=0;
+        blueberryAnswer='';
+      }
+      else {
+
+        if (questionCount == 0) {
+          console.log('question 1 - blueberry');
+
+
+          //check if the user anwer is equal to something
+          //add one to score if it is correct
+          var answer = document.getElementById("answer").value.toString();
+
+          
+          if (answer.toLowerCase() == 'blueberry' || answer.toLowerCase() == 'blueberries') {
+            score++;
+            
+            console.log('score is ' + score);
+          }
+
+          blueberryAnswer=answer.toString();
+
+          questionCount++;
+
+
+          var image = document.getElementById("image");
+          image.src = "pineapple.png";
+
+          document.getElementById("answer").value = '';
+        }
+        else if (questionCount == 1) {
+          console.log('question 2 - pineapple');
+
+          var answer = document.getElementById("answer").value;
+
+          if (answer.toString().toLowerCase() == 'pineapple' || answer.toString().toLowerCase() == 'pine apple') {
+            score++;
+            
+          }
+
+          pineappleAnswer=answer.toString();
+
+          questionCount++;
+
+          var image = document.getElementById("image");
+          image.src = "lime.png";
+          document.getElementById("answer").value = '';
+
+        } else if (questionCount == 2) {
+          console.log('question 3 - lime');
+
+          var answer = document.getElementById("answer").value;
+
+          if (answer.toString().toLowerCase() == 'lime') {
+            score++;
+            
+          }
+
+          limeAnswer=answer.toString();
+
+          questionCount++;
+
+          var image = document.getElementById("image");
+          image.src = "peach.png";
+          document.getElementById("answer").value = '';
+
+          
+        }
+        else if (questionCount == 3) {
+          console.log('question 4 - peach');
+          var answer = document.getElementById("answer").value;
+
+          if (answer.toString().toLowerCase() == "peach") {
+            score++;
+            
+          }
+
+          peachAnswer=answer.toString();
+
+          questionCount++;
+
+          var image = document.getElementById("image");
+          image.src = "watermelon.png";
+          document.getElementById("answer").value = '';
+        }
+        else if (questionCount == 4) {
+          console.log('question 5 - watermelon');
+
+          var answer = document.getElementById("answer").value;
+
+          if (answer.toString().toLowerCase() == 'watermelon' || answer.toString().toLowerCase() == 'water melon') {
+            score++;
+            
+          }
+
+          watermelonAnswer=answer.toString();
+
+          var image = document.getElementById("image");
+          image.hidden = true;
+          document.getElementById("answer").hidden = true;
+          document.getElementById("button").value = "Play Again!";
+          questionCount = 99;
+          end();
+        }
+        else {
+          console.log('else entered');
+          //out of questions
+          //end();
+        }
+      }
+
+    }
+    function end() {
+      console.log('end entered');
+
+      //do the score display here
+      var scoreSpan = document.getElementById("score");
+      var scoreText = '<br>';
+      scoreText += '<table id="table1">';
+      scoreText += '<tr><td>Score</td><td>' + score.toString() + '/5</td></tr>' ;
+      scoreText += '<tr><td>Answer -- blueberry YOUR Answer -- </td><td>' + blueberryAnswer + '</td></tr>';
+      scoreText += '<tr><td>Answer -- pineapple YOUR Answer -- </td><td>' + pineappleAnswer + '</td></tr>';
+      scoreText += '<tr><td>Answer -- lime YOUR Answer -- </td><td>' + limeAnswer + '</td></tr>';
+      scoreText += '<tr><td>Answer -- peach YOUR Answer -- </td><td>' + peachAnswer + '</td></tr>';
+      scoreText += '<tr><td>Answer -- watermelon YOUR Answer -- </td><td>' + watermelonAnswer + '</td></tr>';
+      scoreText += '</table>';
+      scoreSpan.innerHTML = scoreText;
+      scoreSpan.hidden=false;
+      document.getElementById("results").hidden=false;
+    }
+  </script>
+</head>
+
+<body title="Quiz Time!!!">
+
+  <h2>Guess That Picture Game</h2>
+  <p>
+
+    <span id="picture"><img id="image" src="blueberry.png" width="292" height="230" /></span>
+    <br>
+    <input type="text" id="answer">
+    <span id="results" class="results" hidden=true>Results!!!</span>
+    <span id="score" hidden=true></span><br>
+    <input type="button" id="button" class="button" value="Next" onclick="checkPicture()">
+    <!--Hide or Reveal Stuff???-->
+    <br>
+    
+    <!--hidden at beginning maybe??-->
+  </p>
+</body>
+
+</html>
